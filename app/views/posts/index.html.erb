@@ -1,0 +1,28 @@
+<div class="wrap">
+  <div class="header">
+    <h1 class="blog-title"><%= link_to image_tag('logo.png') %></h1>
+    <ul class="reg">
+        <li><%= link_to 'Регистрация', registration_path %></li>
+        <li><%= link_to 'Вход', sessions_login_path %></li>
+        <li><%= link_to 'Выйти', sessions_logout_path %></li>
+    </ul>
+  </div>
+  <div class="content">
+    <p class="create-post"> <%= link_to 'Создать', new_post_path if current_user %> </p>
+    <% @posts.each do |post| %>
+      <h2><%= post.title %></h2>
+      <p><%= post.body %></p>
+      <p><%= post.tags %></p>
+      <p>Создал: <%= post.user.name%></p>
+
+      <ul class="edit-list">
+        <li><%= link_to 'Показать', post %></li>
+        <li><%= link_to 'Редактировать', edit_post_path(post) %></li>
+        <li><%= link_to 'Удалить', post, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      </ul>
+    <% end %>
+  </div>
+  <div class="footer">
+    <p>&copy; Copyright 2014 by Ivancha Igor</p>
+  </div>
+</div>
